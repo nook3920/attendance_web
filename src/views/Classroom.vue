@@ -25,7 +25,8 @@
 export default {
   data () {
     return {
-      classrooms: []
+      classrooms: [],
+      test: 'a'
     }
   },
   created () {
