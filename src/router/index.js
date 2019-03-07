@@ -37,6 +37,22 @@ const routes = [
     meta: {
       auth: true
     }
+  },
+  {
+    path: '/classroom/create',
+    name: 'CreateClassroom',
+    component: () => import('../views/CreateClassroom'),
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/excel',
+    name: 'Excel',
+    component: () => import('../views/excel'),
+    meta: {
+      auth: true
+    }
   }
 ]
 

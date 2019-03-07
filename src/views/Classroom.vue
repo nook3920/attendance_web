@@ -2,18 +2,23 @@
   <v-container fill-height fluid grid-list-xl>
     <v-layout justify-center wrap>
       <v-layout row wrap>
+        <v-flex xs12>
+          <v-btn to="/classroom/create" color="success">Create Class</v-btn>
+        </v-flex>
           <v-flex xs6 v-for="classroom in classrooms" :key="classroom._id">
-            <v-card color="blue-grey darken-2" class="white--text">
-              <v-card-title primary-title>
-                <div>
-                  <div class="headline">{{classroom.subject}}</div>
-                  <span>{{classroom.teacher.name}}</span>
-                </div>
-              </v-card-title>
-              <v-card-actions>
-                <v-btn flat dark>Listen now</v-btn>
-              </v-card-actions>
-            </v-card>
+            <v-hover>
+              <v-card  slot-scope="{ hover }" color="blue-grey darken-2" :class="`elevation-${hover ? 12 : 2}`">
+                <v-card-title primary-title>
+                  <div>
+                    <div class="headline white--text ">Subject: {{classroom.subject}}</div>
+                    <span class="white--text ">Teacher: {{classroom.teacher.name}}</span>
+                  </div>
+                </v-card-title>
+                <v-card-actions>
+                  <v-btn flat dark>Listen now</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-hover>
           </v-flex>
       <v-btn @click="test">test</v-btn>
     </v-layout>
@@ -26,7 +31,7 @@ export default {
   data () {
     return {
       classrooms: [],
-      test: 'a'
+      testa: 'a'
     }
   },
   created () {

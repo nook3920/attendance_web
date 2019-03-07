@@ -11,7 +11,7 @@
     <v-list v-if="role == 'ADMIN'">
       <v-list-tile v-for="ll in admin" :key="ll.name" @click="test" :to="ll.path">
         <v-list-tile-action>
-          <v-icon>home</v-icon>
+          <v-icon>{{ll.icon}}</v-icon>
         </v-list-tile-action>
         <v-list-tile-title>
           {{ll.name}}
@@ -59,21 +59,21 @@ export default {
     return {
       drawer: true,
       student: [
-        {name: 'HOME', path: '/'},
-        {name: 'STUDENT', path: '/'},
-        {name: 'Profile', path: '/'},
-        {name: 'สถานะการเข้าเรียน', path: '/'},
-        {name: 'สรุปการเข้าเรียน/วิชา', path: '/'},
-        {name: 'สรุปการเข้าเรียน/เทอม', path: '/'}
+        {name: 'HOME', path: '/', icon: 'home'},
+        {name: 'STUDENT', path: '/', icon: 'home'},
+        {name: 'Profile', path: '/', icon: 'home'},
+        {name: 'สถานะการเข้าเรียน', path: '/', icon: 'home'},
+        {name: 'สรุปการเข้าเรียน/วิชา', path: '/', icon: 'home'},
+        {name: 'สรุปการเข้าเรียน/เทอม', path: '/', icon: 'home'}
       ],
       teacher: [
-        {name: 'HOME', path: '/'},
-        {name: 'TEACHER', path: '/classroom'},
+        {name: 'HOME', path: '/', icon: 'home'},
+        {name: 'TEACHER', path: '/classroom', icon: 'home'},
         
       ],
       admin: [
-        {name: 'HOME', path: '/'},
-        {name: 'CLASSROOM', path: '/classroom'}
+        {name: 'HOME', path: '/', icon: 'home'},
+        {name: 'CLASSROOM', path: '/classroom', icon: 'account_box'}
       ]
     }
   },
