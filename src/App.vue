@@ -37,13 +37,6 @@ export default {
     }
   },
   created () {
-    this.$http.get('https://jsonplaceholder.typicode.com/posts/1')
-    .then(data =>{
-      console.log(data)
-    })
-    .catch(err => {
-      console.log(err)
-    })
   },
   mounted() {
     EventBus.$on('NOTI', (payload) => {

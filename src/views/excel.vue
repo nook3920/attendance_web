@@ -1,48 +1,86 @@
 <template>
-  <v-container fill-height fluid justify-center>
+  <div>
     <el-upload
-      :auto-upload="false"
-      :show-file-list="false"
-      action=""
-      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+      :action="uploadHost"
+      :file-list="fileList"
+      list-type="picture-card"
       :on-change="handleChange"
+      :auto-upload="false"
+      :on-success="getPicture"
+      :on-remove="handleRemove"
+      accept="image/jpeg"
+      name="photo"
       >
-      <el-button type="primary" >upload</el-button>
-      <div slot="tip" class="el-upload__tip">upload student list</div>
+    <el-button size="small" type="primary">Click to upload</el-button>
+    <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div>
     </el-upload>
-    
-    <!-- <el-button type="text" >Hello</el-button> -->
-    
-  </v-container>
+  </div>
 </template>
 
-
 <script>
-import XLSX from 'xlsx'
+import http from '../api/http-common'
 export default {
+  name: 'excel',
   data () {
     return {
-      stList: [1]
+      picData: '',
+      uploadHost: `${location.hostname}:3000/user/picture`,
+      fileList: []
     }
   },
   methods: {
-    handleChange(file, fileList) {
-      var f = file.raw
-      const st = []
+    handleChange (file, fileList) {
+      console.log(file)
+      
       var reader = new FileReader()
       reader.onload = function(e) {
-        var data = e.target.result
-        var workbook = XLSX.read(data, { type: 'array'})
-        workbook.Strings.forEach(ss => {
-          st.push(ss.h.replace('-',''))
-          // this.stList.push(ss.h)
-          // console.log(ss.h)
+        this.picData = e.target.result
+        // console.log(this.picData)
+        http.post('/user/picture', {
+          pic: this.picData
+        }).then(res => {
+          // console.log(res)
+          fileList.splice(-1,1)
+          fileList.push({uid: file.uid, name: res.data.fileName, url: `http://${location.hostname}:3000/datasets/${res.data.id}/${res.data.fileName}`})
+          // console.log(this.fileList)
+        }).catch(err => {
+          console.log(err)
         })
       }
-      this.stList= st
-      reader.readAsArrayBuffer(f)
-      console.log(this.stList)
+
+      reader.readAsDataURL(file.raw)
+
+    },
+    getPicture() {
+      this.fileList = []
+      let id = this.$store.getters.getUser.user_id
+      http.get('/user/picture')
+      .then(res => {
+        res.data.picture.forEach(aa => {
+          this.fileList.push({name: aa, url: `http://${location.hostname}:3000/datasets/${res.data.id}/${aa}`})
+
+        }) 
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+    handleRemove(file, fileList) {
+      console.log(file)
+      http.delete('/user/picture',
+       {data: {
+        filename: file.name
+      }})
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
     }
+  },
+  created() {
+    this.getPicture()
   }
 }
 </script>

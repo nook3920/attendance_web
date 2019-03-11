@@ -7,6 +7,11 @@
             <el-input v-model="form.subjectName"></el-input>
           </el-col>
         </el-form-item>
+        <el-form-item label="roomId" prop="roomId">
+          <el-col :span="24">
+            <el-input v-model="form.roomId"></el-input>
+          </el-col>
+        </el-form-item>
         <el-form-item label="ClassTime" prop="classTime">
           <el-col :span="16">
             <el-time-picker
@@ -37,7 +42,7 @@
           <el-transfer
             v-model="selectStudent"
             :data="studentList"
-            :titles="['StudentList', 'Class']"
+            :titles="['StudentList', 'ClassRoom']"
           ></el-transfer>
           <el-upload
             :auto-upload="false"
@@ -67,6 +72,7 @@ export default {
     return {
       form: {
         subjectName: "",
+        roomId: '413',
         classTime: [new Date(), new Date()],
         classDay: "",
         late: 15,
@@ -89,6 +95,13 @@ export default {
           {
             required: true,
             message: "Please input Subject Name",
+            trigger: "blur"
+          }
+        ],
+        roomId: [
+          {
+            required: true,
+            message: "Please input Room ID",
             trigger: "blur"
           }
         ],
@@ -166,27 +179,15 @@ export default {
       reader.onload = function(e) {
         var data = e.target.result;
         var workbook = XLSX.read(data, { type: "array" });
-        workbook.Strings.forEach(ss => {
-          
+        workbook.Strings.forEach(ss => {        
           a.map((c, i)=>{
             if(ss.h.replace("-", "") == c.user_id)
               slSt.push(i+1)
-              // console.log(i)
-          })
-          // console.log(ss.h.replace('-', ''))
-          // this.importStList.push(ss.h)
-          
+          })  
         });
-      };
-      
+      };     
       reader.readAsArrayBuffer(f);
       this.selectStudent = slSt
-      // let aa = this.studentList.map((sts, i) => {
-      //   for (let dd of this.importStList){
-      //     console.log(dd)
-      //   }
-      // })
-
     }
   },
   watch: {

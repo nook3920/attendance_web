@@ -68,6 +68,7 @@
           <v-btn v-if="edit" color="success">SAVE</v-btn>
           <v-btn v-else @click="edit = !edit" color="success">EDIT</v-btn>
         </v-card-actions>
+        <excel></excel>
       </v-card>
     </v-layout>
   </v-container>
@@ -75,7 +76,11 @@
 
 <script>
 import http from '../api/http-common'
+import excel from './excel'
 export default {
+  components:{
+    excel
+  },
   data() {
     return {
       edit: false,

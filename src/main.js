@@ -20,13 +20,17 @@ Vue.use(Vuetify)
 Vue.prototype.$http = HTTP
 
 let token = localStorage.getItem('token') || ''
+console.log(token)
 if(token){
   HTTP.get('/user/verify')
   .then(res => {
+    // console.log(res)
     store.commit('setLogin', {
       accessToken: token,
       auth: true,
-      user: res.data
+      user: res.data.userr,
+      name: res.data.userr.name
+
     })
   })
   .catch(err => {

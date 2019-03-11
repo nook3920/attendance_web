@@ -23,10 +23,12 @@ const state = {
 
 const mutations = {
   setLogin(state, payload) {
+    
     state.isAuth = payload.auth
     state.user = payload.user
+    state.user.name = payload.name
     state.accessToken = payload.accessToken
-    console.log(state.user)
+    // console.log('user::::', state.user)
   },
   setLogout(state) {
     state.isAuth = false
@@ -64,12 +66,14 @@ const actions = {
   signIn({commit, dispatch}, payload) {
     http.post('/user/login', {...payload})
     .then(res => {
+      console.log(res.data)
       const user = JSON.parse(atob(res.data.accessToken.split('.')[1]))
       localStorage.setItem('token', res.data.accessToken)
       commit('setLogin', {
         accessToken: res.data.accessToken,
         auth: res.data.auth,
-        user
+        user,
+        name: res.data.name
       })
       dispatch('noti', {
         message: `Welcome ${user.name}`,
@@ -79,7 +83,8 @@ const actions = {
       console.log(res)
     })
     .catch(err => {
-      console.log(err.response)
+      
+      console.log(err)
     })
   },
   logOut({commit, dispatch}){

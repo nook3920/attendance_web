@@ -12,6 +12,7 @@
                   <div>
                     <div class="headline white--text ">Subject: {{classroom.subject}}</div>
                     <span class="white--text ">Teacher: {{classroom.teacher.name}}</span>
+                    <div class="white--text ">students: {{ classroom.students | countArray }}</div>
                   </div>
                 </v-card-title>
                 <v-card-actions>
@@ -38,6 +39,7 @@ export default {
     this.$http.get('/class')
     .then(res => {
       this.classrooms = res.data
+      console.log(res.data)
     })
     .catch(err => {
     })
@@ -45,6 +47,11 @@ export default {
   methods: {
     test() {
       console.log(this.classrooms)
+    }
+  },
+  filters: {
+    countArray: function(value) {
+      return value.length
     }
   }
 }
