@@ -68,12 +68,13 @@ export default {
       ],
       teacher: [
         {name: 'HOME', path: '/', icon: 'home'},
-        {name: 'TEACHER', path: '/classroom', icon: 'home'},
+        {name: 'TEACHER', path: '/classrooms', icon: 'home'},
         
       ],
       admin: [
         {name: 'HOME', path: '/', icon: 'home'},
-        {name: 'CLASSROOM', path: '/classroom', icon: 'account_box'}
+        {name: 'CLASSROOM', path: '/classrooms', icon: 'account_box'},
+        {name: 'ATTEND', path: '/showattendance', icon: 'account_box'},
       ]
     }
   },

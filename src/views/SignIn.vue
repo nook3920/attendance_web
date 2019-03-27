@@ -32,13 +32,14 @@
                   v-validate="'required|min:6'"
                   data-vv-name="password"
                   :error-messages="errors.collect('password')"
+                  @keyup.enter="signIn"
                 />
               </v-flex>
             </v-layout>
           </v-container>
         </form>
         <v-card-actions>
-           <v-btn @click="signIn" color="success">login</v-btn>  
+           <v-btn @click="signIn"  color="success">login</v-btn>  
         </v-card-actions>
       </v-card>
   </v-layout>

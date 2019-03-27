@@ -13,10 +13,13 @@
                     <div class="headline white--text ">Subject: {{classroom.subject}}</div>
                     <span class="white--text ">Teacher: {{classroom.teacher.name}}</span>
                     <div class="white--text ">students: {{ classroom.students | countArray }}</div>
+                    <div class="white--text ">start: {{ classroom.start | toLocalTime}}</div>
+                    <div class="white--text ">end: {{ classroom.end | toLocalTime}}</div>
+                    <div class="white--text ">day: {{ classroom.day}}</div>
                   </div>
                 </v-card-title>
                 <v-card-actions>
-                  <v-btn flat dark>Listen now</v-btn>
+                  <v-btn outline flat dark @click="goEditClass(classroom._id)">EDIT</v-btn>
                 </v-card-actions>
               </v-card>
             </v-hover>
@@ -36,22 +39,29 @@ export default {
     }
   },
   created () {
+    
     this.$http.get('/class')
     .then(res => {
       this.classrooms = res.data
-      console.log(res.data)
     })
     .catch(err => {
-    })
+      })
   },
   methods: {
     test() {
       console.log(this.classrooms)
+    },
+    goEditClass(id) {
+      this.$router.push({name: 'EditClassroom', params: { id: id}})
     }
   },
   filters: {
     countArray: function(value) {
       return value.length
+    },
+    toLocalTime: function(value) {
+      const a = new Date(value)
+      return a.toLocaleTimeString()
     }
   }
 }

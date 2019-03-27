@@ -83,7 +83,10 @@ const actions = {
       console.log(res)
     })
     .catch(err => {
-      
+      dispatch('noti', {
+        message: `Wrong UserId or Password`,
+        color: 'error'
+      })
       console.log(err)
     })
   },

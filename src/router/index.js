@@ -31,8 +31,8 @@ const routes = [
     }
   },
   {
-    path: '/classroom',
-    name: 'Classroom',
+    path: '/classrooms',
+    name: 'Classrooms',
     component: () => import('../views/classroom'),
     meta: {
       auth: true
@@ -53,6 +53,17 @@ const routes = [
     meta: {
       auth: true
     }
+  },
+  {
+    path: '/showattendance',
+    name: 'ShowAttendance',
+    component: () => import('../views/ShowAttendance')
+
+  },
+  {
+    path: '/classroom/:id',
+    name: 'EditClassroom',
+    component: () => import('../views/EditClassroom')
   }
 ]
 

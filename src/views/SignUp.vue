@@ -91,7 +91,7 @@
       </v-form>
       <v-card-actions class="justify-center">
         <v-btn @click="signUp" color="success">SignUp</v-btn>
-        <v-btn @click="test" color="success">test emit</v-btn>
+        <!-- <v-btn @click="test" color="success">test emit</v-btn> -->
       </v-card-actions>
     </v-card>
     </v-layout>
