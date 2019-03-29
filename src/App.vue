@@ -4,69 +4,82 @@
     <toolbar></toolbar>
     <v-content>
       <v-container fluid>
-        <v-snackbar 
-          v-model="snackbar"
-          :timeout="timeout"
-          :color="color"
-          top
-          >
-            {{  message }}
-        </v-snackbar>
-        <router-view></router-view>
+        <v-snackbar v-model="snackbar" :timeout="timeout" :color="color" top>{{ message }}</v-snackbar>
+        <transition name="slide-right" mode="out-in">
+          <router-view class="child-view"></router-view>
+        </transition>
       </v-container>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Sidebar from './components/core/Sidebar'
-import Toolbar from './components/core/Toolbar'
-import EventBus from './eventBus'
+import Sidebar from "./components/core/Sidebar";
+import Toolbar from "./components/core/Toolbar";
+import EventBus from "./eventBus";
 export default {
-  name: 'app',
+  name: "app",
   components: {
     Sidebar,
     Toolbar
   },
-  data () {
+  data() {
     return {
-      message: 'Hello World',
+      message: "Hello World",
       snackbar: false,
       timeout: 3000,
-      color: 'success'
-    }
+      color: "success"
+    };
   },
-  created () {
-  },
+  created() {},
   mounted() {
-    EventBus.$on('NOTI', (payload) => {
-      this.message = payload.message
-      this.color = payload.color
-      this.snackbar = true
-    })
-    if(this.$store.getters.getName){
-      console.log(this.$store.getters.getName)
-      this.$store.dispatch('noti', {
+    EventBus.$on("NOTI", payload => {
+      this.message = payload.message;
+      this.color = payload.color;
+      this.snackbar = true;
+    });
+    if (this.$store.getters.getName) {
+      console.log(this.$store.getters.getName);
+      this.$store.dispatch("noti", {
         message: `Logged in as ${this.$store.getters.getName}`,
-        color: 'success'
-      })
+        color: "success"
+      });
     }
   },
-  created() {
-    
-  }
-}
+  created() {}
+};
 </script>
 
 <style>
 .v-content {
-  background-image: url('./assets/BG.png');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  -o-background-size: 100% 100%, auto;
-  -moz-background-size: 100% 100%, auto;
-  -webkit-background-size: 100% 100%, auto;
-  background-size: 100% 100%, auto;
+  background-color: rgb(0, 0, 0, 0.75);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
+}
+
+.slide-left-enter, .slide-right-leave-active {
+  opacity: 0;
+  -webkit-transform: translate(30px, 0);
+  transform: translate(30px, 0);
+}
+.slide-left-leave-active, .slide-right-enter {
+  opacity: 0;
+  -webkit-transform: translate(-30px, 0);
+  transform: translate(-30px, 0);
+}
+
+.child-view {
+  position: absolute;
+  transition: all .5s cubic-bezier(.55,0,.1,1);
 }
 </style>

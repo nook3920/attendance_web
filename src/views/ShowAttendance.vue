@@ -4,6 +4,7 @@
       :data="attenlist"
       stripe
       style="width: 100%"
+      :row-class-name="tableRowClassName"
       >
     <el-table-column
       prop="date"
@@ -55,6 +56,13 @@ export default {
         console.log(err)
       })
     },
+    tableRowClassName({row, rowIndex}) {
+        if (rowIndex%2 == 1) {
+          return 'warning-row';
+        } else {
+          return 'success-row';
+        }
+      }
     
   },
   created() {
@@ -62,3 +70,12 @@ export default {
   }
 }
 </script>
+<style>
+  .el-table .warning-row {
+    background: #bcabeb;
+  }
+
+  .el-table .success-row {
+    background: #bbc5e9;
+  }
+</style>

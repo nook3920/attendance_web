@@ -1,8 +1,8 @@
 <template>
   <v-container fill-height fluid grid-list-xl>
     <v-layout justify-center wrap>
-      <v-card class="mx-auto" color="#26c6da" dark width="75%">
-        <v-card-title>
+      <v-card class="mx-auto" color="blue lighten-3" dark width="75%">
+        <v-card-title class="black--text">
           <span class="title font-weight-black text-uppercase">{{classroom.subject}}</span>
         </v-card-title>
 
@@ -11,9 +11,9 @@
           <p>Start: {{classroom.start | toLocalTime}} End: {{ classroom.end | toLocalTime }} Late: {{classroom.late}} min</p>
           <p>Day: {{ classroom.day }}</p>
           <v-expansion-panel>
-            <v-expansion-panel-content class="green">
+            <v-expansion-panel-content class="blue lighten-4">
               <template v-slot:header>
-                <div>studentlist</div>
+                <div class="blue-grey--text">รายชื่อนักศึกษา</div>
               </template>
               <el-table
                 :data="classroom.students"
@@ -100,5 +100,7 @@ export default {
       return value.length;
     }
   }
+
+
 };
 </script>

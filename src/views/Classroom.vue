@@ -3,23 +3,26 @@
     <v-layout justify-center wrap>
       <v-layout row wrap>
         <v-flex xs12>
-          <v-btn to="/classroom/create" color="success">Create Class</v-btn>
+          <v-btn to="/classroom/create" color="green accent-4">Create Class</v-btn>
         </v-flex>
-          <v-flex xs6 v-for="classroom in classrooms" :key="classroom._id">
+        <!-- <v-flex xs12><v-subheader dark>Class</v-subheader></v-flex> -->
+          <v-flex xs4 v-for="classroom in classrooms" :key="classroom._id">
             <v-hover>
-              <v-card  slot-scope="{ hover }" color="blue-grey darken-2" :class="`elevation-${hover ? 12 : 2}`">
+              <v-card dark slot-scope="{ hover }" color="#718792" :class="`elevation-${hover ? 12 : 2}`" width="80%">
                 <v-card-title primary-title>
                   <div>
-                    <div class="headline white--text ">Subject: {{classroom.subject}}</div>
-                    <span class="white--text ">Teacher: {{classroom.teacher.name}}</span>
-                    <div class="white--text ">students: {{ classroom.students | countArray }}</div>
-                    <div class="white--text ">start: {{ classroom.start | toLocalTime}}</div>
-                    <div class="white--text ">end: {{ classroom.end | toLocalTime}}</div>
-                    <div class="white--text ">day: {{ classroom.day}}</div>
+                    <div class="headline font-weight-black ">{{classroom.subject}}</div>
                   </div>
                 </v-card-title>
+                <v-card-text class="subheading">
+                    <span >Teacher: {{classroom.teacher.name}}</span>
+                    <div >students: {{ classroom.students | countArray }}</div>
+                    <div >start: {{ classroom.start | toLocalTime}}</div>
+                    <div >end: {{ classroom.end | toLocalTime}}</div>
+                    <div >day: {{ classroom.day}}</div>
+                </v-card-text>
                 <v-card-actions>
-                  <v-btn outline flat dark @click="goEditClass(classroom._id)">EDIT</v-btn>
+                  <v-btn color="cyan lighten-2"  @click="goEditClass(classroom._id)">EDIT</v-btn>
                 </v-card-actions>
               </v-card>
             </v-hover>

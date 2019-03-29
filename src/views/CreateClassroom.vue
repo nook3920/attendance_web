@@ -1,84 +1,86 @@
 <template>
   <v-container fill-height fluid justify-center>
     <el-row type="flex" class="row-bg" justify="center">
-      <el-form :model="form" :rules="rules" ref="ruleForm" label-width="80px">
-        <el-form-item label="Subject" prop="subjectName">
-          <el-col :span="24">
-            <el-input v-model="form.subjectName"></el-input>
-          </el-col>
-        </el-form-item>
-        <el-form-item label="roomId" prop="roomId">
-          <el-col :span="24">
-            <el-input v-model="form.roomId"></el-input>
-          </el-col>
-        </el-form-item>
-        <el-form-item label="ClassTime" prop="classTime">
-          <el-col :span="16">
-            <el-time-picker
-              is-range
-              arrow-control
-              v-model="form.classTime"
-              range-separator="To"
-              start-placeholde="Start Time"
-              end-placeholde="End Time"
-              format="HH:mm"
-            ></el-time-picker>
-          </el-col>
-          <el-form-item label="Late" prop="late">
-            <el-col :span="4">
-              <el-input v-model="form.late" placeholder="late time"></el-input>
+      
+        <el-form dark :model="form" :rules="rules" ref="ruleForm" label-width="80px">
+          <el-form-item label="Subject" prop="subjectName">
+            <el-col :span="24">
+              <el-input v-model="form.subjectName"></el-input>
             </el-col>
           </el-form-item>
-        </el-form-item>
-        <el-form-item label="ClassDay" prop="classDay">
-          <el-col :span="24">
-            <el-radio-group v-model="form.classDay" size="small">
-              <el-radio-button v-for="d in days" :key="d.id" :label="d.name"></el-radio-button>
-            </el-radio-group>
-          </el-col>
-        </el-form-item>
-        <el-form-item>
-          <p style="text-align: center; margin: 0 0 20px">Add student to class</p>
-          <el-transfer
-            v-model="selectStudent"
-            :data="studentList"
-            :titles="['StudentList', 'ClassRoom']"
-          ></el-transfer>
-          <el-upload
-            :auto-upload="false"
-            :show-file-list="false"
-            action
-            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-            :on-change="handleChange"
-          >
-            <el-button type="primary">upload</el-button>
-            <div slot="tip" class="el-upload__tip">upload student list</div>
-          </el-upload>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="test">create</el-button>
-          <el-button>Cancle</el-button>
-        </el-form-item>
-      </el-form>
+          <el-form-item label="roomId" prop="roomId">
+            <el-col :span="24">
+              <el-input v-model="form.roomId"></el-input>
+            </el-col>
+          </el-form-item>
+          <el-form-item label="ClassTime" prop="classTime">
+            <el-col :span="16">
+              <el-time-picker
+                is-range
+                arrow-control
+                v-model="form.classTime"
+                range-separator="To"
+                start-placeholde="Start Time"
+                end-placeholde="End Time"
+                format="HH:mm"
+              ></el-time-picker>
+            </el-col>
+            <el-form-item label="Late" prop="late">
+              <el-col :span="4">
+                <el-input v-model="form.late" placeholder="late time"></el-input>
+              </el-col>
+            </el-form-item>
+          </el-form-item>
+          <el-form-item label="ClassDay" prop="classDay">
+            <el-col :span="24">
+              <el-radio-group v-model="form.classDay" size="small">
+                <el-radio-button v-for="d in days" :key="d.id" :label="d.name"></el-radio-button>
+              </el-radio-group>
+            </el-col>
+          </el-form-item>
+          <el-form-item>
+            <p style="text-align: center; margin: 0 0 20px" class="white--text title">Add student to class</p>
+            <el-transfer
+              v-model="selectStudent"
+              :data="studentList"
+              :titles="['StudentList', 'ClassRoom']"
+            ></el-transfer>
+            <el-upload
+              :auto-upload="false"
+              :show-file-list="false"
+              action
+              accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+              :on-change="handleChange"
+            >
+              <el-button type="primary">upload</el-button>
+              <div slot="tip" class="el-upload__tip">upload student list</div>
+            </el-upload>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="test">create</el-button>
+            <el-button>Cancle</el-button>
+          </el-form-item>
+        </el-form>
+     
     </el-row>
   </v-container>
 </template>
 
 <script>
-import XLSX from 'xlsx'
+import XLSX from "xlsx";
 import router from "../router";
 export default {
   data() {
     return {
       form: {
         subjectName: "",
-        roomId: '413',
+        roomId: "413",
         classTime: [new Date(), new Date()],
         classDay: "",
         late: 15,
         students: []
       },
-      
+
       studentList: [],
       selectStudent: [],
       days: [
@@ -171,23 +173,22 @@ export default {
       });
     },
     handleChange(file, fileList) {
-      const a = this.studentList
+      const a = this.studentList;
       var f = file.raw;
       const st = [];
-      let slSt = []
+      let slSt = [];
       var reader = new FileReader();
       reader.onload = function(e) {
         var data = e.target.result;
         var workbook = XLSX.read(data, { type: "array" });
-        workbook.Strings.forEach(ss => {        
-          a.map((c, i)=>{
-            if(ss.h.replace("-", "") == c.user_id)
-              slSt.push(i+1)
-          })  
+        workbook.Strings.forEach(ss => {
+          a.map((c, i) => {
+            if (ss.h.replace("-", "") == c.user_id) slSt.push(i + 1);
+          });
         });
-      };     
+      };
       reader.readAsArrayBuffer(f);
-      this.selectStudent = slSt
+      this.selectStudent = slSt;
     }
   },
   watch: {
@@ -202,3 +203,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.el-form-item__label ,.el-upload__tip {
+  color: white;
+}
+</style>

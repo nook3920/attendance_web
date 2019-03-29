@@ -1,17 +1,20 @@
 <template>
-  <v-toolbar 
+  <v-toolbar  
     flat
     dense
     fixed
     absolute
-    extended
-    
+    extended 
+    color="primary"
+    class="elevation-3"
+    dark
     app
   >
-    
-    <v-toolbar-title>Attendance</v-toolbar-title>
+    <img src="../../assets/cam.png" alt="Logo" style="height:70px; width:100px; transform: rotate(340deg)">
+    <v-toolbar-title>ROLL-CALL SYSTEM BY FACE RECOGNITION</v-toolbar-title>
     
     <v-spacer></v-spacer>
+    <v-icon large color="blue darken-10">person</v-icon>
     <v-toolbar-items  v-if="!isAuth">
       <v-btn to="/login" flat>login</v-btn>
       <v-divider></v-divider>
@@ -23,20 +26,20 @@
       <v-btn @click="logOut"  flat>logout</v-btn>
     </v-toolbar-items>
 
-    <template  v-slot:extension>
-      <v-tabs align-with-title v-if="role == 'ADMIN'">
-        <v-tabs-slider color="blue"></v-tabs-slider>
+    <template   v-slot:extension >
+      <v-tabs  color="rgb(255,255,255,0)" align-with-title v-if="role == 'ADMIN'">
+        <v-tabs-slider color="white"></v-tabs-slider>
         <v-tab v-for="ll in admin" :key="ll.name" :to="ll.path">{{ll.name}}</v-tab>
       </v-tabs>
       <v-tabs align-with-title v-if="role == 'TEACHER'">
-        <v-tabs-slider color="blue"></v-tabs-slider>
+        <v-tabs-slider color="white"></v-tabs-slider>
         <v-tab v-for="ll in teacher" :key="ll.name" :to="ll.path">{{ll.name}}</v-tab>
       </v-tabs>
       <v-tabs align-with-title v-if="role == 'STUDENT'">
-        <v-tabs-slider color="blue"></v-tabs-slider>
+        <v-tabs-slider color="white"></v-tabs-slider>
         <v-tab v-for="ll in student" :key="ll.name" :to="ll.path">{{ll.name}}</v-tab>
       </v-tabs>
-      <v-tabs align-with-title v-if="!isAuth">
+      <v-tabs align-with-title v-if="!isAuth" >
         <v-tab to="/">HOME</v-tab>
       </v-tabs>
     </template>

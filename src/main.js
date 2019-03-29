@@ -15,8 +15,18 @@ import store from './store'
 const configV = {
   fieldsBagName: 'fieldss'
 }
+
+import colors from 'vuetify/es5/util/colors'
+
 Vue.use(VeeValidate, configV)
-Vue.use(Vuetify)
+Vue.use(Vuetify, {
+  theme: {
+    primary: colors.grey.darken3,
+    secondary: colors.red.lighten4,
+    accent: colors.indigo.base,
+    textcolor : "#FFFFFF"
+  }
+})
 Vue.prototype.$http = HTTP
 
 let token = localStorage.getItem('token') || ''

@@ -2,7 +2,7 @@
   <v-container fill-height fluid grid-list-xl>
     <v-layout justify-center wrap>
       <v-card max-width="50%">
-        <v-sheet color="elevation-5 green lighten-5" class="px-2 mx-2">
+        <v-sheet color="elevation-5 blue lighten-5" class="px-2 mx-2">
           <v-layout justify-center>
             <h1 class="font-weight-black">Profile</h1>
           </v-layout>
@@ -65,8 +65,8 @@
           </v-layout>
         </v-container>
         <v-card-actions>
-          <v-btn v-if="edit" color="success">SAVE</v-btn>
-          <v-btn v-else @click="edit = !edit" color="success">EDIT</v-btn>
+          <v-btn v-if="edit" color="info">SAVE</v-btn>
+          <v-btn v-else @click="edit = !edit" color="info">EDIT</v-btn>
         </v-card-actions>
         <excel></excel>
       </v-card>

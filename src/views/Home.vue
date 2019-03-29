@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>Home</h1>
-    <v-btn>test</v-btn>
-    <v-icon>lock</v-icon>
+    <v-btn color="secondary">test</v-btn>
+    <v-icon color="secondary">lock</v-icon>
     
   </div>
 </template>
