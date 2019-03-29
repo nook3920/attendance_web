@@ -43,7 +43,8 @@ export default {
       .then(res => {
         console.log(res)
         this.attenlist = res.data.map(re => {
-          return {name: re.studentid.name,
+          
+          return {name: re.studentid.name || 'N/A',
           date: new Date(re.date).toLocaleString(),
           status: attendStatus[re.status],
           subject: re.classroomid.subject}

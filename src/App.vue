@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <sidebar></sidebar>
+    <!-- <sidebar></sidebar> -->
     <toolbar></toolbar>
     <v-content>
       <v-container fluid>
@@ -57,3 +57,16 @@ export default {
   }
 }
 </script>
+
+<style>
+.v-content {
+  background-image: url('./assets/BG.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -o-background-size: 100% 100%, auto;
+  -moz-background-size: 100% 100%, auto;
+  -webkit-background-size: 100% 100%, auto;
+  background-size: 100% 100%, auto;
+}
+</style>

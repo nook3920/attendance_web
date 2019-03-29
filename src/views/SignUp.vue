@@ -20,6 +20,7 @@
           <v-layout wrap>
             <v-flex xs12>
               <v-text-field
+                class="input-name"
                 label="User ID"
                 v-model="user_id"
                 v-validate="'required'"
@@ -157,3 +158,9 @@ export default {
 
 }
 </script>
+
+<style>
+.input-name {
+  
+}
+</style>

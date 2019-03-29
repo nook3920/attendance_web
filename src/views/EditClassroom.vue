@@ -37,10 +37,11 @@
 
         <v-card-actions>
           <v-list-tile class="grow">
-            <v-layout align-center justify-end>
+            <v-layout align-center justify-start>
               <span>total {{classroom.students | countArray}}</span>
             </v-layout>
           </v-list-tile>
+          <el-button type="danger" icon="el-icon-delete" circle @click="delClass"></el-button>
         </v-card-actions>
       </v-card>
     </v-layout>
@@ -66,6 +67,25 @@ export default {
         .catch(err => {
           console.log(err);
         });
+    },
+    delClass(){
+      this.$confirm('delete class?', 'Warning', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      }).then(() => {
+        // console.log('OK!!!', this.classroom._id)
+        this.$http.delete(`/class/${this.classroom._id}`)
+        .then(res => {
+          console.log(res.data)
+          this.$router.push({name: 'Classrooms'})
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      }).catch(() => {
+        console.log('cancel!!!')
+      })
     }
   },
   created() {
