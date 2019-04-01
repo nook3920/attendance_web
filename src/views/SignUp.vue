@@ -9,10 +9,10 @@
       wrap
     >
     
-      <v-card max-width="50%">
+      <v-card max-width="30%" max-height="90%">
         <v-sheet color="elevation-5 green lighten-5" class="px-2 mx-2" >
           <v-layout justify-center >
-            <h1 class="font-weight-black">Register</h1>
+            <h1 class="font-weight-black">สมัครสมาชิก</h1>
           </v-layout>
         </v-sheet>
       <v-form>
@@ -21,7 +21,7 @@
             <v-flex xs12>
               <v-text-field
                 class="input-name"
-                label="User ID"
+                label="รหัสนักศึกษา(ไม่มีขีด)/เลขไอดี(อาจารย์)"
                 v-model="user_id"
                 v-validate="'required'"
                 data-vv-name="user_id"
@@ -33,7 +33,7 @@
               <v-flex xs12>
                 
               <v-text-field
-                label="password"
+                label="รหัสผ่าน"
                 v-model="password"
                 v-validate="'required|min:6'"
                 data-vv-name="password"
@@ -44,19 +44,18 @@
             </v-flex>
             <v-flex xs12>
               <v-text-field
-                label="name"
+                label="ชื่อ-นามสกุล"
                 v-model="name"
                 v-validate="'required'"
                 data-vv-name="name"
                 :error-messages="errors.collect('name')"
                 outline
-            
               >
               </v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field
-                label="email"
+                label="อีเมล"
                 v-model="email"
                 v-validate="'required|email'"
                 data-vv-name="email"
@@ -69,7 +68,7 @@
               <v-select
                 :items="genderList"
                 v-model="gender"
-                label="gender"
+                label="เพศ"
                 outline
                 v-validate="'required'"
                 :error-messages="errors.collect('gender')"
@@ -80,7 +79,7 @@
               <v-select
                 :items="roleList"
                 v-model="role"
-                label="role"
+                label="สถานะ"
                 outline
                 v-validate="'required'"
                 :error-messages="errors.collect('role')"
@@ -91,7 +90,7 @@
         </v-container>
       </v-form>
       <v-card-actions class="justify-center">
-        <v-btn @click="signUp" color="success">SignUp</v-btn>
+        <v-btn @click="signUp" color="success">ยืนยัน</v-btn>
         <!-- <v-btn @click="test" color="success">test emit</v-btn> -->
       </v-card-actions>
     </v-card>
@@ -112,8 +111,8 @@ export default {
       role: '',
       gender: '',
       genderList: [
-        'Male',
-        'Female'
+        'MALE',
+        'FEMALE'
       ],
       roleList: [
         'STUDENT',
@@ -159,8 +158,4 @@ export default {
 }
 </script>
 
-<style>
-.input-name {
-  
-}
-</style>
+

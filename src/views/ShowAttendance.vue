@@ -1,5 +1,7 @@
 <template>
-  <div>
+<v-container fill-height>
+  <v-layout wrap row>
+
     <el-table
       :data="attenlist"
       stripe
@@ -25,7 +27,9 @@
       width="200"></el-table-column>
 
     </el-table>
-  </div>
+  
+  </v-layout>
+</v-container>
 </template>
 
 <script>

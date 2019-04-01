@@ -39,6 +39,9 @@ const mutations = {
     state.user.role = ''
     localStorage.removeItem('token')
     router.push({path: '/login'})
+  },
+  setName(state, payload) {
+    state.user.name = payload.name
   }
 }
 
@@ -106,6 +109,7 @@ const actions = {
 const getters =  {
   getAuth: state => state.isAuth,
   getName: state => state.user.name,
+  getEmail: state => state.user.email,
   getUser: state => state.user,
   getRole: state => state.user.role
 }

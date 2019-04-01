@@ -64,6 +64,16 @@ const routes = [
     path: '/classroom/:id',
     name: 'EditClassroom',
     component: () => import('../views/EditClassroom')
+  },
+  {
+    path: '/student',
+    name: 'Student',
+    component: () => import('../views/StudentResult')
+  },
+  {
+    path: '/dashboard',
+    name: 'DashBoard',
+    component: () => import('../views/DashBoard')
   }
 ]
 

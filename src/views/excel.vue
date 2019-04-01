@@ -12,7 +12,7 @@
       name="photo"
       >
     <el-button size="small" type="primary">Click to upload</el-button>
-    <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div>
+    <!-- <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div> -->
     </el-upload>
   </div>
 </template>

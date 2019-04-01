@@ -1,15 +1,15 @@
 <template>
-  <v-container fill-height fluid grid-list-xl>
+  <v-container  fluid grid-list-xl>
     <v-layout justify-center wrap>
-      <v-layout row wrap>
+      <v-layout align-center  row wrap>
         <v-flex xs12>
-          <v-btn to="/classroom/create" color="green accent-4">Create Class</v-btn>
+          <v-btn to="/classroom/create" color="green accent-4">สร้างห้องเรียน<v-icon right>playlist_add</v-icon></v-btn>
         </v-flex>
         <!-- <v-flex xs12><v-subheader dark>Class</v-subheader></v-flex> -->
-          <v-flex xs4 v-for="classroom in classrooms" :key="classroom._id">
-            <v-hover>
-              <v-card dark slot-scope="{ hover }" color="#718792" :class="`elevation-${hover ? 12 : 2}`" width="80%">
-                <v-card-title primary-title>
+          <v-flex xs4 v-for="classroom in classrooms" :key="classroom._id" >
+            <v-hover >
+              <v-card  dark slot-scope="{ hover }" color="#718792" :class="`elevation-${hover ? 12 : 2} justify-center ml-5` " width="80%" @click="goEditClass(classroom._id)">
+                <v-card-title primary-title class="blue lighten-2">
                   <div>
                     <div class="headline font-weight-black ">{{classroom.subject}}</div>
                   </div>
@@ -22,8 +22,11 @@
                     <div >day: {{ classroom.day}}</div>
                 </v-card-text>
                 <v-card-actions>
-                  <v-btn color="cyan lighten-2"  @click="goEditClass(classroom._id)">EDIT</v-btn>
+                  <!-- <v-btn color="cyan lighten-2"  @click="goEditClass(classroom._id)">แก้ไข<v-icon right>build</v-icon></v-btn> -->
                 </v-card-actions>
+
+                
+
               </v-card>
             </v-hover>
           </v-flex>

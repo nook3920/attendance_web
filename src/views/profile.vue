@@ -1,10 +1,10 @@
 <template>
-  <v-container fill-height fluid grid-list-xl>
+  <v-container  fluid grid-list-xl>
     <v-layout justify-center wrap>
-      <v-card max-width="50%">
+      <v-card max-width="35%">
         <v-sheet color="elevation-5 blue lighten-5" class="px-2 mx-2">
           <v-layout justify-center>
-            <h1 class="font-weight-black">Profile</h1>
+            <h1 class="font-weight-black">โปรไฟล์ส่วนตัว</h1>
           </v-layout>
         </v-sheet>
         <v-container py-5>
@@ -45,27 +45,25 @@
                 </label>
               </image-uploader>
             
-            <v-flex xs8>
-              <v-text-field label="USER ID" :value="user.user_id" outline disabled></v-text-field>
-
+            <v-flex xs12>
+              <v-text-field label="รหัสนักศึกษา/เลขไอดี" :value="user.user_id" outline disabled></v-text-field>
+            </v-flex>          
+            <v-flex xs6>
+              <v-text-field label="ชื่อ" :value="user.name" v-model="name" outline :disabled="!edit"></v-text-field>
             </v-flex>
-           
-            <v-flex xs8>
-              <v-text-field label="Name" :value="user.name" outline :disabled="!edit"></v-text-field>
+            <v-flex xs6>
+              <v-text-field label="อีเมล" :value="user.email" v-model="email" outline :disabled="!edit"></v-text-field>
             </v-flex>
-            <v-flex xs8>
-              <v-text-field label="Email" :value="user.email" outline :disabled="!edit"></v-text-field>
+            <v-flex xs6>
+              <v-text-field label="เพศ" :value="user.gender" outline disabled></v-text-field>
             </v-flex>
-            <v-flex xs8>
-              <v-text-field label="Gender" :value="user.gender" outline disabled></v-text-field>
-            </v-flex>
-            <v-flex xs8>
-              <v-text-field label="Status" :value="user.role" outline disabled></v-text-field>
+            <v-flex xs6>
+              <v-text-field label="สถานะ" :value="user.role" outline disabled></v-text-field>
             </v-flex>
           </v-layout>
         </v-container>
         <v-card-actions>
-          <v-btn v-if="edit" color="info">SAVE</v-btn>
+          <v-btn v-if="edit" @click="editProfile"  color="info">SAVE</v-btn>
           <v-btn v-else @click="edit = !edit" color="info">EDIT</v-btn>
         </v-card-actions>
         <excel></excel>
@@ -88,6 +86,8 @@ export default {
       image: "https://vuetifyjs.com/apple-touch-icon-180x180.png",
       hasImage: false,
       avatar: ``,
+      name: this.$store.getters.getName,
+      email: this.$store.getters.getEmail
       
     };
   },
@@ -121,6 +121,16 @@ export default {
         console.log(err)
       })
     },
+    editProfile(){
+      this.$http.post('/user/profile', { name: this.name, email: this.email })
+      .then(res => {
+        this.$store.commit('setName', { name: this.name})
+        console.log(res.data)
+      }).catch(err => {
+        console.log(err)
+      })
+      this.edit = !this.edit
+    }
   },
   created() {
     this.getAvatar()

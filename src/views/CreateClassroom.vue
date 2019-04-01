@@ -205,7 +205,7 @@ export default {
 </script>
 
 <style>
-.el-form-item__label ,.el-upload__tip {
+.el-form-item__label , .el-upload__tip {
   color: white;
 }
 </style>
