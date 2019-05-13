@@ -10,7 +10,7 @@
     dark
     app
   >
-    <img src="../../assets/cam.png" alt="Logo" style="height:70px; width:100px; transform: rotate(340deg)">
+    <img src="../../assets/cam.png" @click="goHome" alt="Logo" style="height:70px; width:100px; transform: rotate(340deg)">
     <v-toolbar-title>ระบบเช็คชื่อโดยการจดจำใบหน้า</v-toolbar-title>
     
     <v-spacer></v-spacer>
@@ -39,9 +39,9 @@
         <v-tabs-slider color="white"></v-tabs-slider>
         <v-tab v-for="ll in student" :key="ll.name" :to="ll.path">{{ll.name}}</v-tab>
       </v-tabs>
-      <v-tabs color="rgb(255,255,255,0)" align-with-title v-if="!isAuth" >
+      <!-- <v-tabs color="rgb(255,255,255,0)" align-with-title v-if="!isAuth" >
         <v-tab to="/">HOME</v-tab>
-      </v-tabs>
+      </v-tabs> -->
     </template>
 
   </v-toolbar>
@@ -62,7 +62,7 @@ export default {
       teacher: [
         {name: 'หน้าแรก', path: '/', icon: 'home'},
         {name: 'ห้องเรียน', path: '/classrooms', icon: 'account_box'},
-        {name: 'TEACHER', path: '/classrooms', icon: 'home'},
+        {name: 'แดชบอร์ด', path: '/dashboard', icon: 'home'},
         
       ],
       admin: [
@@ -75,6 +75,9 @@ export default {
   methods:{
     logOut(){
       this.$store.dispatch('logOut')
+    },
+    goHome(){
+      this.$router.push({name: 'Home'})
     }
   },
   computed:{

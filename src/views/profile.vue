@@ -1,12 +1,11 @@
 <template>
-  <v-container  fluid grid-list-xl>
+  <v-container  fluid grid-list-xl class="white--text">
     <v-layout justify-center wrap>
-      <v-card max-width="35%">
-        <v-sheet color="elevation-5 blue lighten-5" class="px-2 mx-2">
-          <v-layout justify-center>
-            <h1 class="font-weight-black">โปรไฟล์ส่วนตัว</h1>
-          </v-layout>
-        </v-sheet>
+      <v-card max-width="35%" >
+        <v-card-title class="white--text blue lighten-2 justify-center" >
+            <h1 class="font-weight-black ">โปรไฟล์ส่วนตัว</h1>
+        </v-card-title>
+          
         <v-container py-5>
           <v-layout row wrap justify-center>
             <v-flex xs3>
@@ -45,8 +44,8 @@
                 </label>
               </image-uploader>
             
-            <v-flex xs12>
-              <v-text-field label="รหัสนักศึกษา/เลขไอดี" :value="user.user_id" outline disabled></v-text-field>
+            <v-flex xs12 >
+              <v-text-field  label="รหัสนักศึกษา/เลขไอดี" :value="user.user_id" outline disabled></v-text-field>
             </v-flex>          
             <v-flex xs6>
               <v-text-field label="ชื่อ" :value="user.name" v-model="name" outline :disabled="!edit"></v-text-field>

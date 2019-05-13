@@ -1,24 +1,24 @@
 <template>
   <v-container
-    fill-height
+    
     fluid
     grid-list-xl
     >
     <v-layout
       justify-center
       wrap
+      
     >
-      <v-card max-width="30%" max-height="30%">
-        <v-sheet color="elevation-5 green lighten-5" class="px- mx-2" >
-          <v-layout justify-center >
-            <h1 class="font-weight-black">เข้าสู่ระบบ</h1>
-          </v-layout>
-        </v-sheet>
+      <v-card max-width="30%" max-height="100%" >
+        <v-card-title class="white--text blue lighten-2 pa-0 justify-center">
+            <h1 class="font-weight-black ">เข้าสู่ระบบ</h1>
+        </v-card-title>
+         
         <!-- <v-card>
           เข้าสู่ระบบ
         </v-card> -->
         <form>
-          <v-container py-0>
+          <v-container>
             <v-layout wrap>
               <v-flex xs12 md12>
                 <v-text-field
@@ -43,7 +43,7 @@
             </v-layout>
           </v-container>
         </form>
-        <v-card-actions class="justify-center">
+        <v-card-actions class="justify-center ">
            <v-btn @click="signIn"  color="success" >ล็อคอิน</v-btn>  
         </v-card-actions>
       </v-card>

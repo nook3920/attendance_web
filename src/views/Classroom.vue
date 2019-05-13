@@ -24,13 +24,10 @@
                 <v-card-actions>
                   <!-- <v-btn color="cyan lighten-2"  @click="goEditClass(classroom._id)">แก้ไข<v-icon right>build</v-icon></v-btn> -->
                 </v-card-actions>
-
-                
-
               </v-card>
             </v-hover>
           </v-flex>
-      <v-btn @click="test">test</v-btn>
+      <!-- <v-btn @click="test">test</v-btn> -->
     </v-layout>
   </v-container>
 </template>
@@ -45,7 +42,6 @@ export default {
     }
   },
   created () {
-    
     this.$http.get('/class')
     .then(res => {
       this.classrooms = res.data

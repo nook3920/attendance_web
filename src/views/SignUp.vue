@@ -1,24 +1,21 @@
 <template>
   <v-container
-    fill-height
+  
     fluid
-    grid-list-xl
+    
     >
     <v-layout
       justify-center
       wrap
     >
-    
-      <v-card max-width="30%" max-height="90%">
-        <v-sheet color="elevation-5 green lighten-5" class="px-2 mx-2" >
-          <v-layout justify-center >
-            <h1 class="font-weight-black">สมัครสมาชิก</h1>
-          </v-layout>
-        </v-sheet>
+      <v-card max-width="30%" max-height="100%">
+        <v-card-title class="white--text blue lighten-2 pa-0 justify-center">
+          <h1 class="font-weight-black">สมัครสมาชิก</h1>
+        </v-card-title>
       <v-form>
-        <v-container py-5>
+        <v-container >
           <v-layout wrap>
-            <v-flex xs12>
+            <v-flex xs12 class="pa-0">
               <v-text-field
                 class="input-name"
                 label="รหัสนักศึกษา(ไม่มีขีด)/เลขไอดี(อาจารย์)"
@@ -27,22 +24,25 @@
                 data-vv-name="user_id"
                 :error-messages="errors.collect('user_id')"
                 outline
+                
               >
               </v-text-field>
-            </v-flex>  
-              <v-flex xs12>
-                
+            </v-flex >  
+              <v-flex xs12 class="pa-0">
               <v-text-field
                 label="รหัสผ่าน"
                 v-model="password"
                 v-validate="'required|min:6'"
                 data-vv-name="password"
+                :type="show ? 'text' : 'password'"
+                @click:append="show = !show"
+                :append-icon="show ? 'visibility' : 'visibility_off'"
                 :error-messages="errors.collect('password')"
                 outline
               >
               </v-text-field>
             </v-flex>
-            <v-flex xs12>
+            <v-flex xs12 class="pa-0">
               <v-text-field
                 label="ชื่อ-นามสกุล"
                 v-model="name"
@@ -53,7 +53,7 @@
               >
               </v-text-field>
             </v-flex>
-            <v-flex xs12>
+            <v-flex xs12 class="pa-0">
               <v-text-field
                 label="อีเมล"
                 v-model="email"
@@ -64,7 +64,7 @@
               >
               </v-text-field>
             </v-flex>
-            <v-flex xs6>
+            <v-flex xs6 class="pa-0">
               <v-select
                 :items="genderList"
                 v-model="gender"
@@ -73,9 +73,10 @@
                 v-validate="'required'"
                 :error-messages="errors.collect('gender')"
                 data-vv-name="gender"
+                
               ></v-select>
             </v-flex>
-            <v-flex xs6>
+            <v-flex xs6 class="pa-0">
               <v-select
                 :items="roleList"
                 v-model="role"
@@ -104,6 +105,7 @@ import EventBus from '../eventBus'
 export default {
   data () {
     return {
+      show: false,
       user_id: '',
       password: '',
       email: '',

@@ -6,7 +6,9 @@ import ImageUploader from 'vue-image-upload-resize'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en'
+import VueParticles from 'vue-particles'
 Vue.use(ImageUploader)
+Vue.use(VueParticles)
 Vue.use(ElementUI, { locale })
 import 'vuetify/dist/vuetify.min.css'
 import HTTP from './api/http-common'

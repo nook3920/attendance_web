@@ -74,6 +74,11 @@ const routes = [
     path: '/dashboard',
     name: 'DashBoard',
     component: () => import('../views/DashBoard')
+  },
+  {
+    path: '/dashboard/:id',
+    name: 'DashBoards',
+    component: () => import('../views/DashBoard')
   }
 ]
 

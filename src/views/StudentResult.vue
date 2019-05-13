@@ -1,7 +1,7 @@
 <template>
   <v-container fluid grid-list-ls>
-    <v-layout row wrap>
-      <v-flex xs12>
+    <v-layout row wrap justify-center align-center>
+      <v-flex xs12 align-self-center offset-xs3>
 
       <el-table
       :data="classResult"

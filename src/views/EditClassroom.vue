@@ -13,7 +13,7 @@
           <v-expansion-panel>
             <v-expansion-panel-content class="blue-grey lighten-2">
               <template v-slot:header>
-                <div class="white--text">รายชื่อนักศึกษา</div>
+                <div class="white--text">สรุปการเข้าเรียนรายเทอม</div>
               </template>
               <el-table :data="classResult" border max-height="250">
                 <el-table-column sortable prop="_id.user_id" label="รหัส นศ."></el-table-column>
@@ -40,7 +40,7 @@
         <v-expansion-panel v-for="at in allAttend" :key="at._id">
           <v-expansion-panel-content class="amber accent-4" ripple>
             <template v-slot:header>
-              <div class="blue-grey--text">{{ at._id }}</div>
+              <div class="black--text">{{ at._id }}</div>
             </template>
             <el-table :data="at.students" border max-height="250" :row-class-name="tableRowClassName" @row-click="handleClick">
               

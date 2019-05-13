@@ -58,7 +58,7 @@
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="test">create</el-button>
-            <el-button>Cancle</el-button>
+            <el-button @click="goCancel">Cancle</el-button>
           </el-form-item>
         </el-form>
      
@@ -171,6 +171,9 @@ export default {
           return false;
         }
       });
+    },
+    goCancel(){
+      this.$router.push('/classrooms')
     },
     handleChange(file, fileList) {
       const a = this.studentList;
