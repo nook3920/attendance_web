@@ -7,6 +7,7 @@
             <p>อาจารย์ : {{ classroom.teacher.name}}</p>
             <p>start : {{ classroom.start | toLocalTime}} end : {{ classroom.end | toLocalTime}}</p>
             <p>now: {{ timeNow | toLocalTime}} </p>
+                <v-btn @click="endclass">end class</v-btn>
             <!-- <p>{{ timeCount }}</p> -->
             <!-- <v-progress-linear
               :color="getColor(timeCount)"
@@ -18,7 +19,6 @@
               <v-layout row wrap v-if="isClassDay && isClassTime">
               <v-flex lg2 xs4 md3 v-for="a in att" :key="a._id">
                 <pic-card :name="a.studentid.name" :pic="a.picture" :status="a.status"></pic-card>
-                <v-btn @click="endclass">end class</v-btn>
               </v-layout>
             <!-- <div v-if="!isClassDay || !isClassTime"><p>class not start yet</p></div>
             <div v-else>

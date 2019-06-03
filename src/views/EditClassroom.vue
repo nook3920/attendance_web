@@ -10,6 +10,7 @@
           <p>อาจารย์ : {{ classroom.teacher.name}}</p>
           <p>เริ่ม : {{classroom.start | toLocalTime}} สิ้นสุด : {{ classroom.end | toLocalTime }} สายได้ : {{classroom.late}} นาที</p>
           <p>วัน : {{ classroom.day }}</p>
+          
           <v-expansion-panel>
             <v-expansion-panel-content class="blue-grey lighten-2">
               <template v-slot:header>
@@ -97,6 +98,11 @@
 </template>
 
 <script>
+
+import XLSX from 'xlsx'
+
+var wb = XLSX.utils.book_new()
+
 export default {
   data() {
     return {
@@ -108,8 +114,8 @@ export default {
     };
   },
   methods: {
+    
     tableRowClassName({ row, rowIndex }){
-      
       if(row.status === 1){
         return 'green-row'
       }else if( row.status === 2){

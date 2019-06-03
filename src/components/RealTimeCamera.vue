@@ -37,8 +37,10 @@ export default {
     }
   },
   mounted(){
+    
     this.socket.on(`camera${this.cameraNum}`, data => {
-      // console.log(data)
+      
+      
       let bytes = new Uint8Array(data.pic)
       let binary = bytes.reduce((data, b) => data += String.fromCharCode(b), '')
       const src = "data:image/jpeg;base64," + binary
