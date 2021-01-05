@@ -18,7 +18,7 @@
     "vue-template-compiler": "^2.6.7"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "element-ui": "^2.6.1",
     "filepond": "^4.2.0",
     "filepond-plugin-file-encode": "^2.1.1",
